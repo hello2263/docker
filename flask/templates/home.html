@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>메뉴화면</title>
+	</head>
+	<body>
+		<center>
+			<a href="/">
+				<div style="color: rgb(175, 184, 178); font-size: 5em; font-weight: bold;">
+				Dogyu's Server
+				</div>
+			</a>
+			<br><br>
+		</center>
+	</body>
+	<style>
+		a{
+			text-decoration-line: none;
+		}
+		html,body{
+			height:100%;
+		}
+		body{
+			background-color: rgba(15, 15, 15, 0.781);
+		}
+		body:before{
+			content:'';
+			display:inline-block;
+		}
+		button{
+			background:#00000000;
+			color:rgb(175, 184, 178);
+			border:none;
+			position:relative;
+			height:60px;
+			font-size:1.6em;
+			padding:0 2em;
+			cursor:pointer;
+			transition:800ms ease all;
+			outline:none;
+		}
+		button:hover{
+			background:rgba(5, 5, 5, 0.479);
+		}
+		button:before,button:after{
+			content:'';
+			position:absolute;
+			top:0;
+			right:0;
+			height:2px;
+			width:0;
+			background: #deff24;
+			transition:400ms ease all;
+		}
+		button:after{
+			right:inherit;
+			top:inherit;
+			left:0;
+			bottom:0;
+		}
+		button:hover:before,button:hover:after{
+			width:100%;
+			transition:800ms ease all;
+		}
+	</style>
+	<body>
+		<center>
+			<br><br><br><br><br>
+			</div>				
+			<a href="/weather"><button id = "btn_weather">서울 날씨정보</button></a>
+			<a href="/kakao"><button id = "btn_kakao">카카오</button></a>
+			<a href="/message_send"><button id = "btn_send">건의사항 보내기</button></a><br><br><br>
+		</center>		
+	</body>
+</html>
