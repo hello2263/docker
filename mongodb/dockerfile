@@ -1,0 +1,7 @@
+FROM mongo:latest
+LABEL email="hello2273@naver.com"
+LABEL name="Dogyu Hwang"
+LABEL description="My Weather App MongoDB"
+
+EXPOSE 27017
+CMD mongod --bind_ip_all

@@ -153,7 +153,7 @@ def kakao_friends_update():
         print('friends_update fail')
 
 def find_local_from_db():
-    cursor = find_item(mongo, None, "alarm", "local")
+    cursor = find_item(mongo, None, "alarm", "local").noCursorTimeout()
     for list in cursor:
         print(list)
         local_name.append(list["city"])
