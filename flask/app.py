@@ -12,6 +12,10 @@ mongo = MongoClient(host, int(port), connect=False)
 mydb = mongo['alarm']
 myweather = mydb['weather']
 
+def insert_item_one(mongo, data, db_name=None, collection_name=None):
+    result = mongo[db_name][collection_name].insert_one(data).inserted_id
+    return result
+
 def update_item_one(mongo, condition=None, update_value=None, db_name=None, collection_name=None):
     result = mongo[db_name][collection_name].update_one(filter=condition, update=update_value, upsert=True)
     return result
@@ -168,7 +172,6 @@ def nowtime():
     else:
         today_day = str(now.day)
     if now.hour < 10:
-        print(now.hour)
         today_hour = '0'+str(now.hour)
     else:
         today_hour = str(now.hour)
@@ -186,4 +189,19 @@ def set_data_for_weather(time):
         count += 1
     return weather
 
+@app.route('/faq', methods = ['GET', "POST"])
+def render_message_send():
+    if request.method == 'POST':
+        nick = request.form['nick']
+        msg = request.form['msg']
+        now_date = nowtime()[:-5]
+        try:
+            insert_item_one(mongo, {"date":now_date, "user":nick, 'faq':msg}, "alarm", "faq")
+            print("faq insert")
+            return render_template('faq.html')
+        except:
+            print('error')
+            return render_template('faq.html')
+    else:
+        return render_template('faq.html')
 
