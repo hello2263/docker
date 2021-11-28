@@ -3,9 +3,8 @@ LABEL email="hello2273@naver.com"
 LABEL name="Dogyu Hwang"
 LABEL description="My Weather App Flask"
 
-WORKDIR /app
-
-COPY . .
+ADD . /www
+WORKDIR /www
 
 RUN pip3 install -r requirements.txt
 

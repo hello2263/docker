@@ -1,0 +1,345 @@
+<html>
+	<head>
+		<title>서울특별시 기온</title>
+		<script type='text/javascript'>
+			function out(){
+				var sel = document.getElementById('Time')
+				var user_date = '/' + sel.options[sel.selectedIndex].text;
+				return user_date
+			}
+		</script>
+	</head>
+	<style>
+
+	#layer1{
+		z-index:5
+	}
+
+
+	</style>
+
+	<body>
+		<center>
+			<a href="/">
+				<div style="color: rgb(175, 184, 178); font-size: 5em; font-weight: bold;">
+				Dogyu's Server
+				</div>
+			</a>
+			<br><br>
+			<div style="font-size: 1.6em; color: rgb(59, 59, 59);">
+			</div>
+		</center>
+	</body>
+	<style>
+		a{
+			text-decoration-line: none;
+		}
+	</style>
+
+	<body>
+		<div style='position: absolute'>
+
+			<img height="800px" width="1200px" src="{{ url_for('static', filename='./map.jpg') }}"/><br>
+			<!-- 강남구 -->
+			<div id="layer1" style="cursor:pointer; left:750px; bottom:160px; width:80px; font-size:1em; font-weight:bold; position:absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/강남구';">
+				{{data[0]['tmp']}}도/{{data[0]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[0]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[0]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray2.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 강동구 -->
+			<div id="layer1" style="left: 990px; bottom:300px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/강동구';">
+				{{data[1]['tmp']}}도/{{data[1]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[1]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[1]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 강북구 -->
+			<div id="layer1" style="left: 650px; bottom:535px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/강북구';">
+				{{data[2]['tmp']}}도/{{data[2]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[2]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[2]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 강서구 -->
+			<div id="layer1" style="left: 145px; bottom:330px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/강서구';">
+				{{data[3]['tmp']}}도/{{data[3]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[3]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[3]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 관악구 -->
+			<div id="layer1" style="left: 475px; bottom:70px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/관악구';">
+				{{data[4]['tmp']}}도/{{data[4]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[4]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[4]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 광진구 -->
+			<div id="layer1" style="left: 840px; bottom:275px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/광진구';">
+				{{data[5]['tmp']}}도/{{data[5]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[5]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[5]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 구로구 -->
+			<div id="layer1" style="left: 210px; bottom:140px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/구로구';">
+				{{data[6]['tmp']}}도/{{data[6]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[6]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[6]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 금천구 -->
+			<div id="layer1" style="left: 345px; bottom:85px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/금천구';">
+				{{data[7]['tmp']}}도/{{data[7]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[7]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[7]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 노원구 -->
+			<div id="layer1" style="left: 820px; bottom:560px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/노원구';">
+				{{data[8]['tmp']}}도/{{data[8]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[8]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[8]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 도봉구 -->
+			<div id="layer1" style="left: 710px; bottom:600px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/도봉구';">
+				{{data[9]['tmp']}}도/{{data[9]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[9]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[9]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 동대문구 -->
+			<div id="layer1" style="left: 760px; bottom:380px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/동대문구';">
+				{{data[10]['tmp']}}도/{{data[10]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[10]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[10]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 동작구 -->
+			<div id="layer1" style="left: 475px; bottom:170px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/동작구';">
+				{{data[11]['tmp']}}도/{{data[11]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[11]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[11]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 마포구 -->
+			<div id="layer1" style="left: 380px; bottom:325px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/마포구';">
+				{{data[12]['tmp']}}도/{{data[12]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[12]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[12]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 서대문구 -->
+			<div id="layer1" style="left: 445px; bottom:365px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/서대문구';">
+				{{data[13]['tmp']}}도/{{data[13]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[13]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[13]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 서초구 -->
+			<div id="layer1" style="left: 640px; bottom:125px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/서초구';">
+				{{data[14]['tmp']}}도/{{data[14]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[14]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[14]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 성동구 -->
+			<div id="layer1" style="left: 725px; bottom:300px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/성동구';">
+				{{data[15]['tmp']}}도/{{data[15]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[15]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[15]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 성북구 -->
+			<div id="layer1" style="left: 660px; bottom:438px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/성북구';">
+				{{data[16]['tmp']}}도/{{data[16]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[16]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[16]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 송파구 -->
+			<div id="layer1" style="left: 900px; bottom:185px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/송파구';">
+				{{data[17]['tmp']}}도/{{data[17]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[17]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[17]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 양천구 -->
+			<div id="layer1" style="left: 240px; bottom:213px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/양천구';">
+				{{data[18]['tmp']}}도/{{data[18]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[18]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[18]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 영등포구 -->
+			<div id="layer1" style="left: 385px; bottom:220px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/영등포구';">
+				{{data[19]['tmp']}}도/{{data[19]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[19]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[19]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 용산구 -->
+			<div id="layer1" style="left: 565px; bottom:243px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/용산구';">
+				{{data[20]['tmp']}}도/{{data[20]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[20]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[20]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 은평구 -->
+			<div id="layer1" style="left: 430px; bottom:495px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/은평구';">
+				{{data[21]['tmp']}}도/{{data[21]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[21]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[21]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 종로구 -->
+			<div id="layer1" style="left: 565px; bottom:385px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/종로구';">
+				{{data[22]['tmp']}}도/{{data[22]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[22]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[22]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 중구 -->
+			<div id="layer1" style="left: 605px; bottom:322px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/중구';">
+				{{data[23]['tmp']}}도/{{data[23]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[23]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[23]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>
+			<!-- 중랑구 -->
+			<div id="layer1" style="left: 868px; bottom:420px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
+			onclick="window.location.href='/weather/local/중랑구';">
+				{{data[24]['tmp']}}도/{{data[24]['rain']}}%<br>&nbsp;&nbsp;
+				{% if data[24]['sky'] == 'sunny' %}
+					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
+				{% elif data[24]['sky'] == 'cloudy' %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./cloudy.png') }}"/>
+				{% else %}
+					<img height='40px' width='40px' src="{{ url_for('static', filename='./gray.png') }}"/>
+				{% endif %}
+			</div>			
+		</div>			
+	</body>
+</html>
