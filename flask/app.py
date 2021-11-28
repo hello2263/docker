@@ -184,7 +184,6 @@ def set_data_for_weather(time):
     weather = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
     dict_data = find_item(mongo, {"date":time}, "alarm", "weather")
     for i in dict_data:
-        print(i)
         weather[count] = i
         count += 1
     return weather
