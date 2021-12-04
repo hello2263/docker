@@ -10,6 +10,7 @@ host = "172.17.0.2"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
 mydb = mongo['alarm']
+mysetting = mydb['setting']
 myweather = mydb['weather']
 
 def insert_item_one(mongo, data, db_name=None, collection_name=None):
@@ -121,7 +122,7 @@ def kakao_to_friends_get_friendstokens(code):
         json.dump(tokens, fp)
 
 def kakao_friends_token():
-    with open("kakao_code_friends_friends.json","r") as fp:
+    with open("./kakao_code_friends_friends.json","r") as fp:
         tokens = json.load(fp)
     url="https://kapi.kakao.com/v1/user/access_token_info"
     headers={"Authorization" : "Bearer " + tokens["access_token"]}
@@ -203,4 +204,7 @@ def render_message_send():
             return render_template('faq.html')
     else:
         return render_template('faq.html')
+
+
+
 
