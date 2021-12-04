@@ -40,7 +40,7 @@ def get_experience():
                         {
                             "basicCard": 
                                 {
-                                    "title":"알람설정을 해본적이?",
+                                    "title":"이 앱에서 알람설정은 처음인가요?",
                                     "buttons": [{
                                         "action":"message",
                                         "label":"처음이다",
@@ -63,46 +63,31 @@ def get_code():
     if request.method == 'POST':
         content = request.get_json()
         content = content['action']['detailParams']['code']['origin']
-        print(content)
-        if content[0:4] == u"code":
-            code = content[5:]
-            print(code)
-            dataSend = {
-                "version": "2.0",
-                "template": {
-                    "outputs": [
-                            {
-                                "basicCard": 
-                                    {
-                                        "title":"코드가 입력됐습니다.",
-                                        "buttons": [{
-                                            "action":"message",
-                                            "label":"사용자 이름 입력",
-                                            "messageText": "이름 입력"
-                                    }]
-                                    }
-                            }
-                            ]
-                }
-            }
-            app1.kakao_to_friends_get_friendstokens(code)
-            app1.kakao_friends_token()
-            app1.kakao_friends_check()
-            return jsonify(dataSend)
-        else :
-            dataSend = {
-                "version": "2.0",
-                "template": {
-                    "outputs": [
+        start = int(content.find('code')) + 5
+        code = content[start:]
+        print(code)
+        dataSend = {
+            "version": "2.0",
+            "template": {
+                "outputs": [
                         {
-                            "simpleText":{
-                                "text" : "코드가 올바르지 않습니다."
-                            }
+                            "basicCard": 
+                                {
+                                    "title":"코드가 입력됐습니다.",
+                                    "buttons": [{
+                                        "action":"message",
+                                        "label":"사용자 이름 입력",
+                                        "messageText": "이름 입력"
+                                }]
+                                }
                         }
-                    ]
-                }
+                        ]
             }
-            return jsonify(dataSend)
+        }
+        app1.kakao_to_friends_get_friendstokens(code)
+        app1.kakao_friends_token()
+        app1.kakao_friends_check()
+        return jsonify(dataSend)
 
 @app.route('/name', methods=['POST'])
 def get_name():
