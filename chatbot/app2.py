@@ -14,6 +14,7 @@ port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
 mydb = mongo['alarm']
 myweather = mydb['weather']
+mysetting = mydb['setting']
 friend = {}
 
 def update_item_one(mongo, condition=None, update_value=None, db_name=None, collection_name=None):
@@ -24,17 +25,14 @@ def update_item_one(mongo, condition=None, update_value=None, db_name=None, coll
 def home():
     return "Hello, Flask"
 
-
 def alarm_setting_update():
     update_item_one(mongo, {"name":str(friend['name'])}, {"$set": {"local":str(friend['local']), "day":str(friend['day']), "time":str(friend['time'])}}, "alarm", "setting")
     print("setting update")
-
 
 @app.route('/experience', methods=['POST'])
 def get_experience():
     if request.method == 'POST':
         content = request.get_json()
-        # print(content)
         dataSend = {
             "version": "2.0",
             "template": {
@@ -54,7 +52,6 @@ def get_experience():
                                         "messageText": "아니다"
                                 }]
                                 }
-                            
                         }
                         ]
             }
@@ -65,7 +62,6 @@ def get_experience():
 def get_code():
     if request.method == 'POST':
         content = request.get_json()
-        # print(content)
         content = content['action']['detailParams']['code']['origin']
         print(content)
         if content[0:4] == u"code":
@@ -110,33 +106,80 @@ def get_code():
 
 @app.route('/name', methods=['POST'])
 def get_name():
+    global user_name
     if request.method == 'POST':
         content = request.get_json()
+        print(content)
         content = content['action']['params']['kakao_name']
         friend['name'] = content
         print(content)
+        try:
+            user_data = app1.find_item(mongo, {"name":friend['name']}, "alarm", "setting")
+            user_name = friend['name']
+            dataSend = {
+                "version": "2.0",
+                "template": {
+                    "outputs": [
+                            {
+                                "basicCard": 
+                                    {
+                                        "title":"설정된 알람이 있습니다. 무엇을 하고 싶나요?",
+                                        "buttons": [{
+                                            "action":"message",
+                                            "label":"알람 생성/수정",
+                                            "messageText": "알람 생성/수정"
+                                    },
+                                    {
+                                            "action":"message",
+                                            "label":"알람 삭제",
+                                            "messageText": "알람 삭제"
+                                    }]
+                                    }
+                            }
+                            ]
+                }
+            }
+            return jsonify(dataSend)
+        except:
+            dataSend = {
+                "version": "2.0",
+                "template": {
+                    "outputs": [
+                            {
+                                "basicCard": 
+                                    {
+                                        "title":"설정된 알람이 없습니다. 무엇을 하고 싶나요?",
+                                        "buttons": [{
+                                            "action":"message",
+                                            "label":"알람 생성/수정",
+                                            "messageText": "알람 생성/수정"
+                                    },
+                                    {
+                                            "action":"message",
+                                            "label":"알람 삭제",
+                                            "messageText": "알람 삭제"
+                                    }]
+                                    }
+                            }
+                            ]
+                }
+            }
+            return jsonify(dataSend)
+
+@app.route('/delete', methods=['POST'])
+def delete_alarm():
+    if request.method == 'POST':
+        mysetting.remove({'name':user_name})
         dataSend = {
             "version": "2.0",
             "template": {
                 "outputs": [
-                        {
-                            "basicCard": 
-                                {
-                                    "title":"어떤 기능을 사용하고 싶나요?",
-                                    "buttons": [{
-                                        "action":"message",
-                                        "label":"알람 생성/수정",
-                                        "messageText": "알람 생성/수정"
-                                },
-                                {
-                                        "action":"message",
-                                        "label":"알람 삭제",
-                                        "messageText": "알람 삭제"
-                                }]
-                                }
-                            
+                    {
+                        "simpleText":{
+                            "text" : "알람이 삭제됐습니다."
                         }
-                        ]
+                    }
+                ]
             }
         }
         return jsonify(dataSend)
