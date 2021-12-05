@@ -67,21 +67,23 @@ def weather_alarm():
     return render_template('weather.html', data = weather)
 
 def kakao_owner_check():
-    with open("kakao_code_friends_owner.json","r") as fp:
+    with open("/home/ec2-user/bot/kakao_code_friends_owner.json","r") as fp:
         tokens = json.load(fp)
     url="https://kapi.kakao.com/v2/user/me"
     headers={"Authorization" : "Bearer " + tokens["access_token"]}
     response = requests.post(url, headers=headers)
     print(response.text)
+    print("kakao_owner_check_finish")
     return response.text
 
 def kakao_owner_token():
-    with open("kakao_code_friends_owner.json","r") as fp:
+    with open("/home/ec2-user/bot/kakao_code_friends_owner.json","r") as fp:
         tokens = json.load(fp)
     url="https://kapi.kakao.com/v1/user/access_token_info"
     headers={"Authorization" : "Bearer " + tokens["access_token"]}
     response = requests.post(url, headers=headers)
     print(response.text)
+    print("kakao_owner_token_finish")
     return response.text
 
 def kakao_to_friends_get_ownercode():
@@ -104,7 +106,7 @@ def kakao_to_friends_get_ownertokens(code):
     response = requests.post(url, data=data)
     tokens = response.json()
     print(tokens)
-    with open("kakao_code_friends_owner.json","w") as fp:
+    with open("/home/ec2-user/bot/kakao_code_friends_owner.json","w") as fp:
         json.dump(tokens, fp)
 
 def kakao_to_friends_get_friendstokens(code):
