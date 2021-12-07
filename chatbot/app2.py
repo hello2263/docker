@@ -94,7 +94,6 @@ def get_name():
     global user_name
     if request.method == 'POST':
         content = request.get_json()
-        print(content)
         content = content['action']['params']['kakao_name']
         friend['name'] = content
         print(content)

@@ -87,7 +87,7 @@ def kakao_owner_token():
     return response.text
 
 def kakao_to_friends_get_ownercode():
-    url = 'https://kauth.kakao.com/oauth/authorize?client_id=91d3b37e4651a9c3ab0216abfe877a50&redirect_uri=https://3.34.129.77/kakao_friend&response_type=code&scope=talk_message,friends'
+    url = 'https://kauth.kakao.com/oauth/authorize?client_id=91d3b37e4651a9c3ab0216abfe877a50&redirect_uri=https://3.35.252.82/kakao_friend&response_type=code&scope=talk_message,friends'
     responses = requests.get(url)
     f = urlopen(url)
     data = f.read()
@@ -100,7 +100,7 @@ def kakao_to_friends_get_ownertokens(code):
     data = {
         'grant_type':'authorization_code',
         'client_id':'91d3b37e4651a9c3ab0216abfe877a50',
-        'redirect_uri':'https://3.34.129.77/kakao_friend',
+        'redirect_uri':'https://3.35.252.82/kakao_friend',
         'code': authorize_code,
         }
     response = requests.post(url, data=data)
@@ -115,7 +115,7 @@ def kakao_to_friends_get_friendstokens(code):
     data = {
         'grant_type':'authorization_code',
         'client_id':'91d3b37e4651a9c3ab0216abfe877a50',
-        'redirect_uri':'https://3.34.129.77/kakao_friend',
+        'redirect_uri':'https://3.35.252.82/kakao_friend',
         'code': authorize_code,
         }
     response = requests.post(url, data=data)
