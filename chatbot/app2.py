@@ -34,10 +34,9 @@ def alarm_setting_update():
     update_item_one(mongo, {"name":str(friend['name'])}, {"$set": {"local":str(friend['local']), "day":str(friend['day']), "time":str(friend['time']), "content":str(friend['content'])}}, "alarm", "setting")
     print("setting update")
 
-@app.route('/experience', methods=['POST'])
-def get_experience():
+@app.route('/start_alarm', methods=['POST'])
+def start_alarm():
     if request.method == 'POST':
-        content = request.get_json()
         dataSend = {
             "version": "2.0",
             "template": {

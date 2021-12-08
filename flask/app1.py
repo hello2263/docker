@@ -66,6 +66,16 @@ def weather_alarm():
     weather = set_data_for_weather(select_date)
     return render_template('weather.html', data = weather)
 
+@app.route('/kakao_code', methods=['GET', 'POST'])
+def kakao_code():
+    global user_kakao_code
+    args_dict = request.args.to_dict()
+    friend_code = args_dict['code']
+    kakao_to_friends_get_ownertokens(friend_code)
+    kakao_friends_token()
+    kakao_friends_check()
+    return render_template('home.html')
+
 def kakao_owner_check():
     with open("/home/ec2-user/bot/kakao_code_friends_owner.json","r") as fp:
         tokens = json.load(fp)
@@ -105,9 +115,9 @@ def kakao_to_friends_get_ownertokens(code):
         }
     response = requests.post(url, data=data)
     tokens = response.json()
-    print(tokens)
     with open("/home/ec2-user/bot/kakao_code_friends_owner.json","w") as fp:
         json.dump(tokens, fp)
+    print("friend token success")
 
 def kakao_to_friends_get_friendstokens(code):
     url = 'https://kauth.kakao.com/oauth/token'
@@ -188,8 +198,12 @@ def set_data_for_weather(time):
     weather = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
     dict_data = find_item(mongo, {"date":time}, "alarm", "weather")
     for i in dict_data:
-        weather[count] = i
-        count += 1
+        j = i['local']
+        if j[-1] == '구':
+            weather[count] = i
+            count += 1
+        else:
+            break
     return weather
 
 @app.route('/faq', methods = ['GET', "POST"])
