@@ -166,20 +166,37 @@ def get_name():
 @app.route('/delete', methods=['POST'])
 def delete_alarm():
     if request.method == 'POST':
-        mysetting.remove({'name':user_name})
-        dataSend = {
-            "version": "2.0",
-            "template": {
-                "outputs": [
-                    {
-                        "simpleText":{
-                            "text" : "알람이 삭제됐습니다."
+        try:
+            mysetting.delete_one({'name':user_name})
+            dataSend = {
+                "version": "2.0",
+                "template": {
+                    "outputs": [
+                        {
+                            "simpleText":{
+                                "text" : "알람이 삭제됐습니다."
+                            }
                         }
-                    }
-                ]
+                    ]
+                }
             }
-        }
-        return jsonify(dataSend)
+            return jsonify(dataSend)
+
+        except:
+            dataSend = {
+                "version": "2.0",
+                "template": {
+                    "outputs": [
+                        {
+                            "simpleText":{
+                                "text" : "삭제할 알람이 없습니다."
+                            }
+                        }
+                    ]
+                }
+            }
+            return jsonify(dataSend)
+        
 
 @app.route('/set_time', methods=['POST'])
 def set_time():
