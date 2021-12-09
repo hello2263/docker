@@ -22,6 +22,8 @@ def alarm_setting_update():
 @app.route('/start_alarm', methods=['POST'])
 def start_alarm():
     if request.method == 'POST':
+        print('경험유무 판별중')
+        content = request.get_json()
         dataSend = {
             "version": "2.0",
             "template": {
@@ -64,6 +66,7 @@ def get_name():
             check = j
         print(content + '님이 앱 실행 중')
         if value.get('name') == None:
+            user_name = friend['name']
             if check.get('name') == None:
                 dataSend = {
                     "version": "2.0",
@@ -76,7 +79,7 @@ def get_name():
                                             "buttons": [{
                                                 "action":"message",
                                                 "label":"알람 설정",
-                                                "messageText": "알람 설정"
+                                                "messageText": "처음이다"
                                         }]
                                         }
                                 }
@@ -102,12 +105,17 @@ def get_name():
                                                 "action":"message",
                                                 "label":"알람 삭제",
                                                 "messageText": "알람 삭제"
+                                        },
+                                        {
+                                                "action":"message",
+                                                "label":"건의사항 작성",
+                                                "messageText": "건의사항 작성"
                                         }]
-                                        }
+                                    }
                                 }
-                                ]
-                    }
-                }
+                                    ]
+                                }
+                            }
                 return jsonify(dataSend)
             
         else:
@@ -129,6 +137,11 @@ def get_name():
                                             "action":"message",
                                             "label":"알람 삭제",
                                             "messageText": "알람 삭제"
+                                    },
+                                    {
+                                                "action":"message",
+                                                "label":"건의사항 작성",
+                                                "messageText": "건의사항 작성"
                                     }]
                                     }
                             }
@@ -154,7 +167,7 @@ def delete_alarm():
                     ]
                 }
             }
-            print(user_name + '님의 알람 삭제완료')
+            print(user_name + '님의 알람 삭제')
             return jsonify(dataSend)
 
         except:
@@ -170,7 +183,30 @@ def delete_alarm():
                     ]
                 }
             }
+            print(user_name + '님의 알람은 삭제할 것이 없음')
             return jsonify(dataSend)
+        
+@app.route('/complain', methods=['POST'])
+def send_complain():
+    if request.method == 'POST':
+        content = request.get_json()
+        user_complain = content['action']['params']['complain']
+        user_name = content['contexts'][1]['params']['kakao_name']['value']
+        func.insert_item_one(mongo, {"name":user_name, "complain":user_complain}, "alarm", "faq")
+        dataSend = {
+            "version": "2.0",
+            "template": {
+                "outputs": [
+                        {
+                            "simpleText":{
+                                "text" : "건의사항이 전달됐습니다."
+                            }
+                        }
+                        ]
+            }
+        }
+        print(user_name + '님의 건의사항 업로드')
+        return jsonify(dataSend)
         
 
 @app.route('/set_time', methods=['POST'])
@@ -187,10 +223,9 @@ def set_time():
             "template": {
                 "outputs": [
                         {
-                            "basicCard": 
-                                {
-                                    "title":"알람 설정이 완료됐습니다.",
-                                }
+                            "simpleText":{
+                                "text" : "알람 설정이 완료됐습니다."
+                            }
                             
                         }
                         ]

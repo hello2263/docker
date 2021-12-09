@@ -19,39 +19,21 @@ mycode = mydb['code']
 def home():
     return render_template('home.html')
 
-@app.route('/kakao')
-def kakao():
-    return render_template('kakao.html')
-
-@app.route('/kakao_owner', methods = ['POST', 'GET'])
-def kakao_check_owner():
-    if request.method == 'POST':
-        code = request.form['code']
-        print(code)
-        func.kakao_to_friends_get_ownertokens(code)
-        user = func.kakao_owner_token()
-        func.kakao_friends_update()
-        return render_template('kakao_owner.html', user = user)
-    else:
-        return render_template('kakao_owner.html')
-
-@app.route('/kakao_friends', methods=['GET', 'POST'])
-def kakao_friends():
-    if request.method == 'POST':
-        code = request.form['code']
-        print(code)
-        kakao_to_friends_get_friendstokens(code)
-        user = func.kakao_friends_token()
-        return render_template('kakao_friends.html', user = user)
-    else:
-        return render_template('kakao_friends.html')
-    
-@app.route('/weather', methods=['GET', 'POST'])
-def weather_alarm():
+@app.route('/weather/<user_date>', methods=['GET', 'POST'])
+def weather_user_gui(user_date):
     global select_date
+    ctime, count = count_time()
+    weather = set_data_for_weather(user_date)
+    return render_template('weather.html', data = weather, date = user_date, time = ctime, count = count)
+
+@app.route('/weather', methods=['GET', 'POST'])
+def weather_gui():
+    global select_date
+    ctime, count = count_time()
     select_date = func.nowtime()
     weather = set_data_for_weather(select_date)
-    return render_template('weather.html', data = weather)
+    return render_template('weather.html', data = weather, date = select_date, time = ctime, count = count)
+
 
 @app.route('/kakao_friend_code', methods=['GET', 'POST'])
 def kakao_friend_code():
@@ -61,7 +43,6 @@ def kakao_friend_code():
     else:
         args_dict = request.args.to_dict()
         friend_code = args_dict['code']
-        print(friend_code)
         kakao_to_friends_get_friendstokens(friend_code)
         func.kakao_friends_token()
         mycode.remove({})
@@ -73,47 +54,9 @@ def kakao_owner_code():
     global user_kakao_code
     args_dict = request.args.to_dict()
     owner_code = args_dict['code']
-    print(owner_code)
     mycode.remove({})
     func.insert_item_one(mongo, {"code":str(owner_code)}, "alarm", "code")
     return render_template('kakao_code.html')
-
-def kakao_to_friends_get_friendstokens(code):
-    url = 'https://kauth.kakao.com/oauth/token'
-    authorize_code = code
-    data = {
-        'grant_type':'authorization_code',
-        'client_id':'91d3b37e4651a9c3ab0216abfe877a50',
-        'redirect_uri':'http://3.35.252.82:5000/kakao_friend_code',
-        'code': authorize_code,
-        }
-    response = requests.post(url, data=data)
-    tokens = response.json()
-    print(tokens)
-    with open("kakao_code_friends_friends.json","w") as fp:
-        json.dump(tokens, fp)
-
-def find_local_from_db():
-    cursor = func.find_item(mongo, None, "alarm", "local").noCursorTimeout()
-    for list in cursor:
-        print(list)
-        local_name.append(list["city"])
-        local_x.append(list["x"])
-        local_y.append(list["y"])
-    return local_name, local_x, local_y
-
-def set_data_for_weather(time):
-    count = 0
-    weather = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
-    dict_data = func.find_item(mongo, {"date":time}, "alarm", "weather")
-    for i in dict_data:
-        j = i['local']
-        if j[-1] == '구':
-            weather[count] = i
-            count += 1
-        else:
-            break
-    return weather
 
 @app.route('/faq', methods = ['GET', "POST"])
 def render_message_send():
@@ -130,6 +73,96 @@ def render_message_send():
             return render_template('faq.html')
     else:
         return render_template('faq.html')
+
+def kakao_to_friends_get_friendstokens(code):
+    url = 'https://kauth.kakao.com/oauth/token'
+    authorize_code = code
+    data = {
+        'grant_type':'authorization_code',
+        'client_id':'91d3b37e4651a9c3ab0216abfe877a50',
+        'redirect_uri':'http://3.35.252.82:5000/kakao_friend_code',
+        'code': authorize_code,
+        }
+    response = requests.post(url, data=data)
+    tokens = response.json()
+    with open("kakao_code_friends_friends.json","w") as fp:
+        json.dump(tokens, fp)
+
+def find_local_from_db():
+    cursor = func.find_item(mongo, None, "alarm", "local").noCursorTimeout()
+    for list in cursor:
+        local_name.append(list["city"])
+        local_x.append(list["x"])
+        local_y.append(list["y"])
+    return local_name, local_x, local_y
+
+def set_data_for_weather(time):
+    count = 0
+    weather = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
+    dict_data = func.find_item(mongo, {"date":time}, "alarm", "weather")
+    for i in dict_data:
+        j = i['local']
+        if j[-1] == '구':
+            weather[count] = i
+            count += 1
+        else:
+            break
+    return weather
+
+def count_time():
+    flag = 2
+    count = 0
+    ctime = []
+    date = set_date_for_api()
+    date = date[:-2] + '00'
+    time_data = func.find_item(mongo, {"local":'강남구', 'date':{"$gte":date}}, "alarm", "weather")
+    for i in time_data:
+        if flag == 2:
+            ctime.append(i)
+            count += 1
+            flag = 0
+        else:
+            flag += 1
+    return ctime, count
+
+def set_date_for_api(): # 날짜를 api에 맞게 설정해줌
+    global today_time, today_date, now
+    now = datetime.now()
+    today_time = int(str(now.hour)+str(now.minute))
+    today_day = now.day
+    if today_time < 215:
+        today_day -= 1
+        today_time = '2330'
+    elif today_time < 515:
+        today_time = '0230'
+    elif today_time < 815:
+        today_time = '0530'
+    elif today_time < 1115:
+        today_time = '0830'
+    elif today_time < 1415:
+        today_time = '1130'
+    elif today_time < 1715:
+        today_time = '1430'
+    elif today_time < 2015:
+        today_time = '1730'
+    elif today_time < 2315:
+        today_time = '2030'
+    else:
+        today_time = '2330'   
+
+    if now.month < 10:
+        today_month = '0'+str(now.month)
+    else:
+        today_month = str(now.month)
+
+    if today_day < 10:
+        today_day = '0'+str(today_day)
+    else:
+        today_day = str(today_day)
+    today_date = str(now.year)+today_month+today_day
+    return today_date + '-' + today_time 
+
+
 
 
 

@@ -27,8 +27,18 @@
 			</a>
 			<br><br>
 			<div style="font-size: 1.6em; color: rgb(59, 59, 59);">
+				기준시간: {{date}}<br><br>
 			</div>
 		</center>
+		시간선택 (3시간 간격)<br>
+		<form action = '' method='post'>
+			<select name = "Time" id = 'Time' >
+				<option value = "" selected>-- 선택 --</option>
+				{% for n in range(0,(count-1)) %}
+				<option value = "" >{{time[n]['date']}}</option>
+				{% endfor %} 
+			</select> <a href="" onclick=" location.href = '/weather'+ out(this.value); return false;"><button>확인</button></a>
+		</form>
 	</body>
 	<style>
 		a{
@@ -42,7 +52,7 @@
 			<img height="800px" width="1200px" src="{{ url_for('static', filename='./map.jpg') }}"/><br>
 			<!-- 강남구 -->
 			<div id="layer1" style="cursor:pointer; left:750px; bottom:160px; width:80px; font-size:1em; font-weight:bold; position:absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/강남구';">
+			>
 				{{data[0]['tmp']}}도/{{data[0]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[0]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -54,7 +64,7 @@
 			</div>
 			<!-- 강동구 -->
 			<div id="layer1" style="left: 990px; bottom:300px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/강동구';">
+			>
 				{{data[1]['tmp']}}도/{{data[1]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[1]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -66,7 +76,7 @@
 			</div>
 			<!-- 강북구 -->
 			<div id="layer1" style="left: 650px; bottom:535px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/강북구';">
+			>
 				{{data[2]['tmp']}}도/{{data[2]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[2]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -78,7 +88,7 @@
 			</div>
 			<!-- 강서구 -->
 			<div id="layer1" style="left: 145px; bottom:330px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/강서구';">
+			>
 				{{data[3]['tmp']}}도/{{data[3]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[3]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -90,7 +100,7 @@
 			</div>
 			<!-- 관악구 -->
 			<div id="layer1" style="left: 475px; bottom:70px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/관악구';">
+			>
 				{{data[4]['tmp']}}도/{{data[4]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[4]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -102,7 +112,7 @@
 			</div>
 			<!-- 광진구 -->
 			<div id="layer1" style="left: 840px; bottom:275px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/광진구';">
+			>
 				{{data[5]['tmp']}}도/{{data[5]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[5]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -114,7 +124,7 @@
 			</div>
 			<!-- 구로구 -->
 			<div id="layer1" style="left: 210px; bottom:140px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/구로구';">
+			>
 				{{data[6]['tmp']}}도/{{data[6]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[6]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -126,7 +136,7 @@
 			</div>
 			<!-- 금천구 -->
 			<div id="layer1" style="left: 345px; bottom:85px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/금천구';">
+			>
 				{{data[7]['tmp']}}도/{{data[7]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[7]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -138,7 +148,7 @@
 			</div>
 			<!-- 노원구 -->
 			<div id="layer1" style="left: 820px; bottom:560px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/노원구';">
+			>
 				{{data[8]['tmp']}}도/{{data[8]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[8]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -150,7 +160,7 @@
 			</div>
 			<!-- 도봉구 -->
 			<div id="layer1" style="left: 710px; bottom:600px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/도봉구';">
+			>
 				{{data[9]['tmp']}}도/{{data[9]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[9]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -162,7 +172,7 @@
 			</div>
 			<!-- 동대문구 -->
 			<div id="layer1" style="left: 760px; bottom:380px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/동대문구';">
+			>
 				{{data[10]['tmp']}}도/{{data[10]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[10]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -174,7 +184,7 @@
 			</div>
 			<!-- 동작구 -->
 			<div id="layer1" style="left: 475px; bottom:170px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/동작구';">
+			>
 				{{data[11]['tmp']}}도/{{data[11]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[11]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -186,7 +196,7 @@
 			</div>
 			<!-- 마포구 -->
 			<div id="layer1" style="left: 380px; bottom:325px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/마포구';">
+			>
 				{{data[12]['tmp']}}도/{{data[12]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[12]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -198,7 +208,7 @@
 			</div>
 			<!-- 서대문구 -->
 			<div id="layer1" style="left: 445px; bottom:365px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/서대문구';">
+			>
 				{{data[13]['tmp']}}도/{{data[13]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[13]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -210,7 +220,7 @@
 			</div>
 			<!-- 서초구 -->
 			<div id="layer1" style="left: 640px; bottom:125px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/서초구';">
+			>
 				{{data[14]['tmp']}}도/{{data[14]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[14]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -222,7 +232,7 @@
 			</div>
 			<!-- 성동구 -->
 			<div id="layer1" style="left: 725px; bottom:300px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/성동구';">
+			>
 				{{data[15]['tmp']}}도/{{data[15]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[15]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -234,7 +244,7 @@
 			</div>
 			<!-- 성북구 -->
 			<div id="layer1" style="left: 660px; bottom:438px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/성북구';">
+			>
 				{{data[16]['tmp']}}도/{{data[16]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[16]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -246,7 +256,7 @@
 			</div>
 			<!-- 송파구 -->
 			<div id="layer1" style="left: 900px; bottom:185px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/송파구';">
+			>
 				{{data[17]['tmp']}}도/{{data[17]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[17]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -258,7 +268,7 @@
 			</div>
 			<!-- 양천구 -->
 			<div id="layer1" style="left: 240px; bottom:213px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/양천구';">
+			>
 				{{data[18]['tmp']}}도/{{data[18]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[18]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -270,7 +280,7 @@
 			</div>
 			<!-- 영등포구 -->
 			<div id="layer1" style="left: 385px; bottom:220px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/영등포구';">
+			>
 				{{data[19]['tmp']}}도/{{data[19]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[19]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -282,7 +292,7 @@
 			</div>
 			<!-- 용산구 -->
 			<div id="layer1" style="left: 565px; bottom:243px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/용산구';">
+			>
 				{{data[20]['tmp']}}도/{{data[20]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[20]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -294,7 +304,7 @@
 			</div>
 			<!-- 은평구 -->
 			<div id="layer1" style="left: 430px; bottom:495px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/은평구';">
+			>
 				{{data[21]['tmp']}}도/{{data[21]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[21]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -306,7 +316,7 @@
 			</div>
 			<!-- 종로구 -->
 			<div id="layer1" style="left: 565px; bottom:385px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/종로구';">
+			>
 				{{data[22]['tmp']}}도/{{data[22]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[22]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -318,7 +328,7 @@
 			</div>
 			<!-- 중구 -->
 			<div id="layer1" style="left: 605px; bottom:322px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/중구';">
+			>
 				{{data[23]['tmp']}}도/{{data[23]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[23]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
@@ -330,7 +340,7 @@
 			</div>
 			<!-- 중랑구 -->
 			<div id="layer1" style="left: 868px; bottom:420px; width: 80px;  font-size: 1em; font-weight: bold; position: absolute; color:rgb(124, 122, 122);"
-			onclick="window.location.href='/weather/local/중랑구';">
+			>
 				{{data[24]['tmp']}}도/{{data[24]['rain']}}%<br>&nbsp;&nbsp;
 				{% if data[24]['sky'] == '맑음' %}
 					<img height='25px' width='25px' src="{{ url_for('static', filename='./sunny.png') }}"/>
