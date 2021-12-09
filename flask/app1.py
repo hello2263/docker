@@ -4,7 +4,7 @@ from datetime import datetime
 from pymongo import MongoClient
 from pymongo.cursor import CursorType
 from urllib.request import urlopen
-import requests, json, time, sys, os
+import requests, json, time, sys, os, func
 
 app = Flask(__name__)
 host = "172.17.0.2"
@@ -13,18 +13,7 @@ mongo = MongoClient(host, int(port), connect=False)
 mydb = mongo['alarm']
 mysetting = mydb['setting']
 myweather = mydb['weather']
-
-def insert_item_one(mongo, data, db_name=None, collection_name=None):
-    result = mongo[db_name][collection_name].insert_one(data).inserted_id
-    return result
-
-def update_item_one(mongo, condition=None, update_value=None, db_name=None, collection_name=None):
-    result = mongo[db_name][collection_name].update_one(filter=condition, update=update_value, upsert=True)
-    return result
-
-def find_item(mongo, condition=None, db_name=None, collection_name=None):
-    result = mongo[db_name][collection_name].find(condition, {"_id":False})
-    return result
+mycode = mydb['code']
 
 @app.route('/')
 def home():
@@ -39,10 +28,9 @@ def kakao_check_owner():
     if request.method == 'POST':
         code = request.form['code']
         print(code)
-        kakao_to_friends_get_ownertokens(code)
-        kakao_owner_token()
-        user = kakao_owner_check()
-        kakao_friends_update()
+        func.kakao_to_friends_get_ownertokens(code)
+        user = func.kakao_owner_token()
+        func.kakao_friends_update()
         return render_template('kakao_owner.html', user = user)
     else:
         return render_template('kakao_owner.html')
@@ -53,8 +41,7 @@ def kakao_friends():
         code = request.form['code']
         print(code)
         kakao_to_friends_get_friendstokens(code)
-        kakao_friends_token()
-        user = kakao_friends_check()
+        user = func.kakao_friends_token()
         return render_template('kakao_friends.html', user = user)
     else:
         return render_template('kakao_friends.html')
@@ -62,62 +49,34 @@ def kakao_friends():
 @app.route('/weather', methods=['GET', 'POST'])
 def weather_alarm():
     global select_date
-    select_date = nowtime()
+    select_date = func.nowtime()
     weather = set_data_for_weather(select_date)
     return render_template('weather.html', data = weather)
 
-@app.route('/kakao_code', methods=['GET', 'POST'])
-def kakao_code():
+@app.route('/kakao_friend_code', methods=['GET', 'POST'])
+def kakao_friend_code():
+    global user_kakao_code
+    if request.method == 'POST': 
+        return render_template('kakao_code.html')
+    else:
+        args_dict = request.args.to_dict()
+        friend_code = args_dict['code']
+        print(friend_code)
+        kakao_to_friends_get_friendstokens(friend_code)
+        func.kakao_friends_token()
+        mycode.remove({})
+        func.insert_item_one(mongo, {"code":str(friend_code)}, "alarm", "code")
+        return render_template('kakao_code.html')
+
+@app.route('/kakao_owner_code', methods=['GET', 'POST'])
+def kakao_owner_code():
     global user_kakao_code
     args_dict = request.args.to_dict()
-    friend_code = args_dict['code']
-    kakao_to_friends_get_ownertokens(friend_code)
-    kakao_friends_token()
-    kakao_friends_check()
-    return render_template('home.html')
-
-def kakao_owner_check():
-    with open("/home/ec2-user/bot/kakao_code_friends_owner.json","r") as fp:
-        tokens = json.load(fp)
-    url="https://kapi.kakao.com/v2/user/me"
-    headers={"Authorization" : "Bearer " + tokens["access_token"]}
-    response = requests.post(url, headers=headers)
-    print(response.text)
-    print("kakao_owner_check_finish")
-    return response.text
-
-def kakao_owner_token():
-    with open("/home/ec2-user/bot/kakao_code_friends_owner.json","r") as fp:
-        tokens = json.load(fp)
-    url="https://kapi.kakao.com/v1/user/access_token_info"
-    headers={"Authorization" : "Bearer " + tokens["access_token"]}
-    response = requests.post(url, headers=headers)
-    print(response.text)
-    print("kakao_owner_token_finish")
-    return response.text
-
-def kakao_to_friends_get_ownercode():
-    url = 'https://kauth.kakao.com/oauth/authorize?client_id=91d3b37e4651a9c3ab0216abfe877a50&redirect_uri=https://3.35.252.82/kakao_friend&response_type=code&scope=talk_message,friends'
-    responses = requests.get(url)
-    f = urlopen(url)
-    data = f.read()
-    print(responses._content)
-    return code
-
-def kakao_to_friends_get_ownertokens(code):
-    url = 'https://kauth.kakao.com/oauth/token'
-    authorize_code = code
-    data = {
-        'grant_type':'authorization_code',
-        'client_id':'91d3b37e4651a9c3ab0216abfe877a50',
-        'redirect_uri':'https://3.35.252.82/kakao_friend',
-        'code': authorize_code,
-        }
-    response = requests.post(url, data=data)
-    tokens = response.json()
-    with open("/home/ec2-user/bot/kakao_code_friends_owner.json","w") as fp:
-        json.dump(tokens, fp)
-    print("friend token success")
+    owner_code = args_dict['code']
+    print(owner_code)
+    mycode.remove({})
+    func.insert_item_one(mongo, {"code":str(owner_code)}, "alarm", "code")
+    return render_template('kakao_code.html')
 
 def kakao_to_friends_get_friendstokens(code):
     url = 'https://kauth.kakao.com/oauth/token'
@@ -125,7 +84,7 @@ def kakao_to_friends_get_friendstokens(code):
     data = {
         'grant_type':'authorization_code',
         'client_id':'91d3b37e4651a9c3ab0216abfe877a50',
-        'redirect_uri':'https://3.35.252.82/kakao_friend',
+        'redirect_uri':'http://3.35.252.82:5000/kakao_friend_code',
         'code': authorize_code,
         }
     response = requests.post(url, data=data)
@@ -134,40 +93,8 @@ def kakao_to_friends_get_friendstokens(code):
     with open("kakao_code_friends_friends.json","w") as fp:
         json.dump(tokens, fp)
 
-def kakao_friends_token():
-    with open("./kakao_code_friends_friends.json","r") as fp:
-        tokens = json.load(fp)
-    url="https://kapi.kakao.com/v1/user/access_token_info"
-    headers={"Authorization" : "Bearer " + tokens["access_token"]}
-    response = requests.post(url, headers=headers)
-    print(response.text)
-    return response.text
-    
-def kakao_friends_check():
-    with open("kakao_code_friends_friends.json","r") as fp:
-        tokens = json.load(fp)
-    url="https://kapi.kakao.com/v2/user/me"
-    headers={"Authorization" : "Bearer " + tokens["access_token"]}
-    response = requests.post(url, headers=headers)
-    print(response.text)
-    return response.text
-    
-def kakao_friends_update():
-    with open("kakao_code_friends_owner.json","r") as fp:
-        tokens = json.load(fp)
-    friend_url = "https://kapi.kakao.com/v1/api/talk/friends"
-    headers={"Authorization" : "Bearer " + tokens["access_token"]}
-    result = json.loads(requests.get(friend_url, headers=headers).text)
-    friends_list = result.get("elements")
-    try:
-        for friend in friends_list:
-            update_item_one(mongo, {"uuid":str(friend['uuid'])}, {"$set": {"id":str(friend['id']), "name":str(friend['profile_nickname']), "image":str(friend['profile_thumbnail_image'])}}, "alarm", "kakao")
-            print(friend['profile_nickname']+"success")
-    except:
-        print('friends_update fail')
-
 def find_local_from_db():
-    cursor = find_item(mongo, None, "alarm", "local").noCursorTimeout()
+    cursor = func.find_item(mongo, None, "alarm", "local").noCursorTimeout()
     for list in cursor:
         print(list)
         local_name.append(list["city"])
@@ -175,28 +102,10 @@ def find_local_from_db():
         local_y.append(list["y"])
     return local_name, local_x, local_y
 
-def nowtime():
-    now = datetime.now()
-    if now.month < 10:
-        today_month = '0'+str(now.month)
-    else:
-        today_month = str(now.month) 
-    if now.day < 10:
-        today_day = '0'+str(now.day)
-    else:
-        today_day = str(now.day)
-    if now.hour < 10:
-        today_hour = '0'+str(now.hour)
-    else:
-        today_hour = str(now.hour)
-    today_date = str(now.year)+today_month+today_day
-    today_time = today_hour+'00'
-    return str(today_date + '-' + today_time)
-
 def set_data_for_weather(time):
     count = 0
     weather = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
-    dict_data = find_item(mongo, {"date":time}, "alarm", "weather")
+    dict_data = func.find_item(mongo, {"date":time}, "alarm", "weather")
     for i in dict_data:
         j = i['local']
         if j[-1] == '구':
@@ -211,7 +120,7 @@ def render_message_send():
     if request.method == 'POST':
         nick = request.form['nick']
         msg = request.form['msg']
-        now_date = nowtime()[:-5]
+        now_date = func.nowtime()[:-5]
         try:
             insert_item_one(mongo, {"date":now_date, "user":nick, 'faq':msg}, "alarm", "faq")
             print("faq insert")
