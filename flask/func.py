@@ -24,7 +24,9 @@ def delete_item_one(mongo, condition=None, db_name=None, collection_name=None):
     result = mongo[db_name][collection_name].delete_one(condition)
     return result
 
-
+def delete_item_many(mongo, condition=None, db_name=None, collection_name=None):
+    result = mongo[db_name][collection_name].delete_many(condition)
+    return result
 
 
 

@@ -1,11 +1,18 @@
 version: '3'
 
 services:
-  flask:
-      container_name: flask
-      image: "flask:test"
+  server:
+      container_name: server
+      image: "server:test"
       ports:
       - "5000:5000"
+      networks:
+      - backend
+  chatbot:
+      container_name: chatbot
+      image: "chatbot:test"
+      ports:
+      - "5555:5555"
       networks:
       - backend
   nginx:
@@ -15,14 +22,13 @@ services:
       - "80:80"
       networks:
       - backend
-  
-  # mongodb:
-  #     container_name: mongodb
-  #     image: "mongodb:test"
-  #     ports:
-  #     -  "27017:27017"
-  #     networks:
-  #     -  backend
+  mongodb:
+      container_name: mongodb
+      image: "mongodb:test"
+      ports:
+      -  "27017:27017"
+      networks:
+      -  backend
 
 networks:
   backend:

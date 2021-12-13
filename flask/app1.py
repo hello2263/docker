@@ -11,8 +11,6 @@ host = "172.17.0.2"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
 mydb = mongo['alarm']
-mysetting = mydb['setting']
-myweather = mydb['weather']
 mycode = mydb['code']
 
 @app.route('/')
@@ -45,7 +43,7 @@ def kakao_friend_code():
         friend_code = args_dict['code']
         kakao_to_friends_get_friendstokens(friend_code)
         func.kakao_friends_token()
-        mycode.remove({})
+        func.delete_item_many(mongo, {}, "alarm", "code")
         func.insert_item_one(mongo, {"code":str(friend_code)}, "alarm", "code")
         return render_template('kakao_code.html')
 
@@ -54,7 +52,7 @@ def kakao_owner_code():
     global user_kakao_code
     args_dict = request.args.to_dict()
     owner_code = args_dict['code']
-    mycode.remove({})
+    func.delete_item_many(mongo, {}, "alarm", "code")
     func.insert_item_one(mongo, {"code":str(owner_code)}, "alarm", "code")
     return render_template('kakao_code.html')
 
@@ -125,7 +123,7 @@ def count_time():
             flag += 1
     return ctime, count
 
-def set_date_for_api(): # 날짜를 api에 맞게 설정해줌
+def set_date_for_api(): 
     global today_time, today_date, now
     now = datetime.now()
     today_time = int(str(now.hour)+str(now.minute))

@@ -31,7 +31,7 @@ def start_alarm():
                         {
                             "basicCard": 
                                 {
-                                    "title":"이 앱에서 알람설정은 처음인가요?",
+                                    "title":"이 앱에서 알람 기능은 처음인가요?",
                                     "buttons": [{
                                         "action":"message",
                                         "label":"처음이다",
@@ -39,8 +39,8 @@ def start_alarm():
                                 },
                                 {
                                         "action":"message",
-                                        "label":"아니다",
-                                        "messageText": "아니다"
+                                        "label":"해봤다",
+                                        "messageText": "해봤다"
                                 }]
                                 }
                         }
@@ -78,7 +78,7 @@ def get_name():
                                             "title":"앱을 실행한 이력이 없습니다.",
                                             "buttons": [{
                                                 "action":"message",
-                                                "label":"알람 설정",
+                                                "label":"기본 설정",
                                                 "messageText": "처음이다"
                                         }]
                                         }
@@ -86,6 +86,7 @@ def get_name():
                                 ]
                     }
                 }
+                print(friend['name'] + '님은 토큰을 발급하지 않았음')
                 return jsonify(dataSend)
             else:
                 dataSend = {
@@ -116,6 +117,7 @@ def get_name():
                                     ]
                                 }
                             }
+                print(friend['name'] + '님은 설정한 알람이 없음')
                 return jsonify(dataSend)
             
         else:
@@ -148,12 +150,16 @@ def get_name():
                             ]
                 }
             }
+            print(friend['name'] + '님은 설정한 알람이 있음')
             return jsonify(dataSend)
             
 @app.route('/delete', methods=['POST'])
 def delete_alarm():
     if request.method == 'POST':
-        try:
+        delete_data = func.find_item(mongo, {"name":user_name}, "alarm", "setting")
+        for i in delete_data:
+            value = i
+        if value.get('name') != None:
             mysetting.delete_one({'name':user_name})
             dataSend = {
                 "version": "2.0",
@@ -167,10 +173,10 @@ def delete_alarm():
                     ]
                 }
             }
-            print(user_name + '님의 알람 삭제')
+            print(user_name + '님의 알람 삭제 완료')
             return jsonify(dataSend)
 
-        except:
+        else:
             dataSend = {
                 "version": "2.0",
                 "template": {
