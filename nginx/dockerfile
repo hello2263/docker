@@ -1,4 +1,4 @@
-FROM nginx:test
+FROM nginx:1.17.4
 LABEL email="hello2273@naver.com"
 LABEL name="Dogyu Hwang"
 LABEL description="My Weather App NginX"

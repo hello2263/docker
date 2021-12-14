@@ -7,7 +7,7 @@ from urllib.request import urlopen
 import requests, json, time, sys, os, func
 
 app = Flask(__name__)
-host = "172.17.0.2"
+host = "172.17.0.4"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
 mydb = mongo['alarm']

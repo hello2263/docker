@@ -7,7 +7,7 @@ import requests, json, time, sys, os, func
 global friend, code
 
 app = Flask(__name__)
-host = "172.17.0.2"
+host = "172.17.0.4"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
 mydb = mongo['alarm']
@@ -213,7 +213,6 @@ def send_complain():
         }
         print(user_name + '님의 건의사항 업로드')
         return jsonify(dataSend)
-        
 
 @app.route('/set_time', methods=['POST'])
 def set_time():
@@ -231,8 +230,7 @@ def set_time():
                         {
                             "simpleText":{
                                 "text" : "알람 설정이 완료됐습니다."
-                            }
-                            
+                            }        
                         }
                         ]
             }
