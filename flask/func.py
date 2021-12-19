@@ -45,6 +45,20 @@ def kakao_to_friends_get_ownertokens(code):
         json.dump(tokens, fp)
     return str(tokens['refresh_token'])
 
+def kakao_to_friends_get_friendstokens(code):
+    url = 'https://kauth.kakao.com/oauth/token'
+    authorize_code = code
+    data = {
+        'grant_type':'authorization_code',
+        'client_id':'91d3b37e4651a9c3ab0216abfe877a50',
+        'redirect_uri':'http://3.35.252.82:5000/kakao_friend_code',
+        'code': authorize_code,
+        }
+    response = requests.post(url, data=data)
+    tokens = response.json()
+    with open("kakao_code_friends_friends.json","w") as fp:
+        json.dump(tokens, fp)
+
 def kakao_to_friends_get_refreshtokens():
     with open("kakao_code_friends_owner.json","r") as fp:
         token_data = json.load(fp)
@@ -79,7 +93,7 @@ def kakao_friends_token():
     return response.text
 
 def kakao_friends_update():
-    with open("kakao_code_friends_owner.json","r") as fp:
+    with open("kakao_code_friends_refresh.json","r") as fp:
         tokens = json.load(fp)
     friend_url = "https://kapi.kakao.com/v1/api/talk/friends"
     headers={"Authorization" : "Bearer " + tokens["access_token"]}

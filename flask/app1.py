@@ -41,7 +41,7 @@ def kakao_friend_code():
     else:
         args_dict = request.args.to_dict()
         friend_code = args_dict['code']
-        kakao_to_friends_get_friendstokens(friend_code)
+        func.kakao_to_friends_get_friendstokens(friend_code)
         func.kakao_friends_token()
         func.delete_item_many(mongo, {}, "alarm", "code")
         func.insert_item_one(mongo, {"code":str(friend_code)}, "alarm", "code")
@@ -71,20 +71,6 @@ def render_message_send():
             return render_template('faq.html')
     else:
         return render_template('faq.html')
-
-def kakao_to_friends_get_friendstokens(code):
-    url = 'https://kauth.kakao.com/oauth/token'
-    authorize_code = code
-    data = {
-        'grant_type':'authorization_code',
-        'client_id':'91d3b37e4651a9c3ab0216abfe877a50',
-        'redirect_uri':'http://3.35.252.82:5000/kakao_friend_code',
-        'code': authorize_code,
-        }
-    response = requests.post(url, data=data)
-    tokens = response.json()
-    with open("kakao_code_friends_friends.json","w") as fp:
-        json.dump(tokens, fp)
 
 def find_local_from_db():
     cursor = func.find_item(mongo, None, "alarm", "local").noCursorTimeout()
