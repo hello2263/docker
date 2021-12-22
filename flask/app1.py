@@ -43,6 +43,7 @@ def kakao_friend_code():
         friend_code = args_dict['code']
         func.kakao_to_friends_get_friendstokens(friend_code)
         func.kakao_friends_token()
+        func.kakao_friend_get_data()
         func.delete_item_many(mongo, {}, "alarm", "code")
         func.insert_item_one(mongo, {"code":str(friend_code)}, "alarm", "code")
         return render_template('kakao_code.html')

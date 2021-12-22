@@ -85,7 +85,7 @@ def kakao_owner_token():
     return response.text
 
 def kakao_friends_token():
-    with open("./kakao_code_friends_friends.json","r") as fp:
+    with open("kakao_code_friends_friends.json","r") as fp:
         tokens = json.load(fp)
     url="https://kapi.kakao.com/v1/user/access_token_info"
     headers={"Authorization" : "Bearer " + tokens["access_token"]}
@@ -105,6 +105,31 @@ def kakao_friends_update():
         print("friends_update success")
     except:
         print('friends_update fail')
+
+def kakao_to_friends_get_friendrefreshtokens():
+    with open("kakao_code_friends_friends.json","r") as fp:
+        token_data = json.load(fp)
+    refresh = token_data['refresh_token']
+    url = "https://kauth.kakao.com/oauth/token"
+    rest_api_key = '91d3b37e4651a9c3ab0216abfe877a50'
+    data = {
+        "grant_type": "refresh_token",
+        "client_id": f"{rest_api_key}",
+        "refresh_token": refresh
+    }
+    response = requests.post(url, data=data)
+    tokens = response.json()
+    with open("kakao_code_friends_friendrefresh.json", "w") as fp:
+        json.dump(tokens, fp)
+    return tokens['access_token']
+
+def kakao_friend_get_data():
+    with open("kakao_code_friends_friends.json","r") as fp:
+        tokens = json.load(fp)
+    url = 'https://kapi.kakao.com/v2/user/me'
+    headers={"Authorization" : "Bearer " + tokens["access_token"]}
+    response = requests.post(url, headers=headers)
+    return response.text
 
 def nowtime():
     now = datetime.now()
