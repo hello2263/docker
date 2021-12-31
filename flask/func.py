@@ -55,6 +55,7 @@ def kakao_to_friends_get_friendstokens(code):
         'code': authorize_code,
         }
     response = requests.post(url, data=data)
+    print('code: ', response.text)
     tokens = response.json()
     with open("kakao_code_friends_friends.json","w") as fp:
         json.dump(tokens, fp)
@@ -71,6 +72,7 @@ def kakao_to_friends_get_refreshtokens():
         "refresh_token": refresh
     }
     response = requests.post(url, data=data)
+    print('owner refresh token : ', response.text)
     tokens = response.json()
     with open("kakao_code_friends_refresh.json", "w") as fp:
         json.dump(tokens, fp)
@@ -81,7 +83,8 @@ def kakao_owner_token():
         tokens = json.load(fp)
     url="https://kapi.kakao.com/v1/user/access_token_info"
     headers={"Authorization" : "Bearer " + tokens["access_token"]}
-    response = requests.post(url, headers=headers)
+    response = requests.get(url, headers=headers)
+    print('owner token : ', response.text)
     return response.text
 
 def kakao_friends_token():
@@ -89,7 +92,8 @@ def kakao_friends_token():
         tokens = json.load(fp)
     url="https://kapi.kakao.com/v1/user/access_token_info"
     headers={"Authorization" : "Bearer " + tokens["access_token"]}
-    response = requests.post(url, headers=headers)
+    response = requests.get(url, headers=headers)
+    print('friend token : ', response.text)
     return response.text
 
 def kakao_friends_update():
@@ -118,6 +122,7 @@ def kakao_to_friends_get_friendrefreshtokens():
         "refresh_token": refresh
     }
     response = requests.post(url, data=data)
+    print(response.text)
     tokens = response.json()
     with open("kakao_code_friends_friendrefresh.json", "w") as fp:
         json.dump(tokens, fp)
@@ -128,7 +133,8 @@ def kakao_friend_get_data():
         tokens = json.load(fp)
     url = 'https://kapi.kakao.com/v2/user/me'
     headers={"Authorization" : "Bearer " + tokens["access_token"]}
-    response = requests.post(url, headers=headers)
+    response = requests.get(url, headers=headers)
+    print('user : ', response.text)
     return response.text
 
 def nowtime():
@@ -148,3 +154,12 @@ def nowtime():
     today_date = str(now.year)+today_month+today_day
     today_time = today_hour+'00'
     return str(today_date + '-' + today_time)
+
+def kakao_friend_unlink():
+    with open("kakao_code_friends_friends.json","r") as fp:
+        tokens = json.load(fp)
+    url = 'https://kapi.kakao.com/v1/user/unlink'
+    headers={"Authorization" : "Bearer " + tokens["access_token"]}
+    response = requests.post(url, headers=headers)
+    print('unlink : ', response.text)
+    return response.text

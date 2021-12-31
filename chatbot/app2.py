@@ -4,7 +4,7 @@ from datetime import datetime
 from pymongo import MongoClient
 from pymongo.cursor import CursorType
 import requests, json, time, sys, os, func
-global friend, code
+global friend
 
 app = Flask(__name__)
 host = "172.17.0.4"

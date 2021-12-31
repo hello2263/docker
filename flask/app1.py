@@ -10,8 +10,6 @@ app = Flask(__name__)
 host = "172.17.0.4"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
-mydb = mongo['alarm']
-mycode = mydb['code']
 
 @app.route('/')
 def home():
@@ -35,22 +33,26 @@ def weather_gui():
 
 @app.route('/kakao_friend_code', methods=['GET', 'POST'])
 def kakao_friend_code():
-    global user_kakao_code
     if request.method == 'POST': 
         return render_template('kakao_code.html')
     else:
         args_dict = request.args.to_dict()
         friend_code = args_dict['code']
         func.kakao_to_friends_get_friendstokens(friend_code)
+        # func.kakao_owner_token()
+        # kakao_to_friends_get_refreshtokens()
         func.kakao_friends_token()
+        # kakao_to_friends_get_friendrefreshtokens()
+        print('a')
         func.kakao_friend_get_data()
+        print('b')
         func.delete_item_many(mongo, {}, "alarm", "code")
         func.insert_item_one(mongo, {"code":str(friend_code)}, "alarm", "code")
+        # func.kakao_friends_update()
         return render_template('kakao_code.html')
 
 @app.route('/kakao_owner_code', methods=['GET', 'POST'])
 def kakao_owner_code():
-    global user_kakao_code
     args_dict = request.args.to_dict()
     owner_code = args_dict['code']
     func.delete_item_many(mongo, {}, "alarm", "code")
