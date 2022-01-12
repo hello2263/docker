@@ -75,6 +75,16 @@ def render_message_send():
     else:
         return render_template('faq.html')
 
+@app.route('/log', methods = ['GET', 'POST'])
+def render_log():
+    log_list = []
+    log_all = func.find_item(mongo, None, "alarm", "log")
+    for i in log_all:
+        log_list.append(i['log'])
+    print(log_list)
+    return render_template('log.html', log = log_list)
+        
+
 def find_local_from_db():
     cursor = func.find_item(mongo, None, "alarm", "local").noCursorTimeout()
     for list in cursor:

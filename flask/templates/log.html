@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>메뉴화면</title>
+		<title>로그</title>
 	</head>
 	<body>
 		<center>
@@ -12,6 +12,7 @@
 			<br><br>
 		</center>
 	</body>
+
 	<style>
 		a{
 			text-decoration-line: none;
@@ -26,7 +27,7 @@
 			content:'';
 			display:inline-block;
 		}
-		button{
+		input{
 			background:#00000000;
 			color:rgb(175, 184, 178);
 			border:none;
@@ -38,10 +39,23 @@
 			transition:800ms ease all;
 			outline:none;
 		}
-		button:hover{
+		textarea{
+			background:#00000000;
+			color:rgb(175, 184, 178);
+			border:none;
+			position:relative;
+			height:60px;
+			font-size:1.6em;
+			padding:0 2em;
+			cursor:pointer;
+			transition:800ms ease all;
+			outline:none;
+		}
+		#sub:hover{
 			background:rgba(5, 5, 5, 0.479);
 		}
-		button:before,button:after{
+		#sub:before,
+		#sub:after{
 			content:'';
 			position:absolute;
 			top:0;
@@ -51,24 +65,28 @@
 			background: #deff24;
 			transition:400ms ease all;
 		}
-		button:after{
+		#sub:after{
 			right:inherit;
 			top:inherit;
 			left:0;
 			bottom:0;
 		}
-		button:hover:before,button:hover:after{
+		#sub:hover:before,
+		#sub:hover:after{
 			width:100%;
 			transition:800ms ease all;
 		}
 	</style>
 	<body>
+		<br><br><br><br>
 		<center>
-			<br><br><br><br><br>
-			</div>				
-			<a href="/weather"><button id = "btn_weather">서울 날씨정보</button></a>
-			<a href="/faq"><button id = "btn_send">건의사항 보내기</button></a><br><br><br>
-			<a href="/log"><button id = "btn_log">로그보기</button></a><br><br><br>
-		</center>		
+            <div style="font-size: 1.2em; color: rgb(238, 231, 231);">
+            {% for n in log %}
+            {{n}}<br>
+            {% endfor %}
+            </div>
+            <br><br><br>
+		</center>
 	</body>
+
 </html>
