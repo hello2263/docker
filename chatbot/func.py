@@ -2,7 +2,13 @@ from urllib.parse import urlencode, quote_plus
 from urllib.request import urlopen, Request
 from urllib import parse
 from datetime import datetime
+from pymongo import MongoClient
+from pymongo.cursor import CursorType
 import sys, json, requests, os
+
+host = "172.17.0.4"
+port = "27017"
+mongo = MongoClient(host, int(port), connect=False)
 
 def find_item(mongo, condition=None, db_name=None, collection_name=None):
     result = mongo[db_name][collection_name].find(condition, {"_id":False}).sort('date')
@@ -24,6 +30,9 @@ def delete_item_one(mongo, condition=None, db_name=None, collection_name=None):
     result = mongo[db_name][collection_name].delete_one(condition)
     return result
 
+def delete_item_many(mongo, condition=None, db_name=None, collection_name=None):
+    result = mongo[db_name][collection_name].delete_many(condition)
+    return result
 
 
 
@@ -146,3 +155,16 @@ def nowtime():
     today_date = str(now.year)+today_month+today_day
     today_time = today_hour+'00'
     return str(today_date + '-' + today_time)
+
+def read_log(name):
+    log = open(name+'.log', 'rt')
+    line_log = []
+    loglines = log.readlines()
+    loglines = loglines[-100:]
+    for line in loglines:
+        line_log.append(line)
+    log.close()
+    delete_item_many(mongo, {}, "alarm", name)
+    for i in line_log:
+        insert_item_one(mongo, {'log':str(i)}, 'alarm', name)
+    

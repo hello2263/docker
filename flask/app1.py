@@ -4,12 +4,14 @@ from datetime import datetime
 from pymongo import MongoClient
 from pymongo.cursor import CursorType
 from urllib.request import urlopen
-import requests, json, time, sys, os, func
+import requests, json, time, sys, os, func, logging
 
 app = Flask(__name__)
 host = "172.17.0.4"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
+logging.basicConfig(filename = 'log_flask.log', level = logging.DEBUG)
+
 
 @app.route('/')
 def home():
@@ -77,13 +79,32 @@ def render_message_send():
 
 @app.route('/log', methods = ['GET', 'POST'])
 def render_log():
+    return render_template('log.html')
+
+@app.route('/log_bot', methods = ['GET', 'POST'])
+def log_bot():
     log_list = []
-    log_all = func.find_item(mongo, None, "alarm", "log")
+    log_all = func.find_item(mongo, None, "alarm", "log_bot")
     for i in log_all:
         log_list.append(i['log'])
-    print(log_list)
-    return render_template('log.html', log = log_list)
-        
+    return render_template('log_bot.html', log = log_list)
+
+@app.route('/log_flask', methods = ['GET', 'POST'])
+def log_flask():
+    func.read_log('log_flask')
+    log_list = []
+    log_all = func.find_item(mongo, None, "alarm", "log_flask")
+    for i in log_all:
+        log_list.append(i['log'])
+    return render_template('log_flask.html', log = log_list)
+
+@app.route('/log_chatbot', methods = ['GET', 'POST'])
+def log_chatbot():
+    log_list = []
+    log_all = func.find_item(mongo, None, "alarm", "log_chatbot")
+    for i in log_all:
+        log_list.append(i['log'])
+    return render_template('log_bot.html', log = log_list)
 
 def find_local_from_db():
     cursor = func.find_item(mongo, None, "alarm", "local").noCursorTimeout()
@@ -95,7 +116,7 @@ def find_local_from_db():
 
 def set_data_for_weather(time):
     count = 0
-    weather = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
+    weather = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
     dict_data = func.find_item(mongo, {"date":time}, "alarm", "weather")
     for i in dict_data:
         j = i['local']
@@ -158,6 +179,7 @@ def set_date_for_api():
         today_day = str(today_day)
     today_date = str(now.year)+today_month+today_day
     return today_date + '-' + today_time 
+
 
 
 

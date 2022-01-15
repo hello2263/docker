@@ -1,0 +1,72 @@
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:18] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:22] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:23] "GET /log HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:28] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:29] "GET /weather HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:29] "GET /static/gray2.png HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:29] "[36mGET /static/map.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:29] "GET /static/gray.png HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:30] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:36] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:38] "GET /faq HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:39] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:40] "GET /weather HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:40] "[36mGET /static/map.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:40] "[36mGET /static/gray2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:40] "[36mGET /static/gray.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 17:51:41] "GET / HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:05] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:06] "GET /weather HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:06] "[36mGET /static/map.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:06] "[36mGET /static/gray.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:06] "[36mGET /static/gray2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:06] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:07] "GET /log HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:10] "GET /log_chatbot HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:16] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:17] "GET /log HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:19] "GET /log_bot HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:25] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:30] "GET /log HTTP/1.1" 200 -
+ERROR:app1:Exception on /log_flask [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/flask/app1.py", line 94, in log_flask
+    func.read_log('log_flask')
+  File "/home/ec2-user/docker/flask/func.py", line 175, in read_log
+    delete_item_many(mongo, {}, "alarm", name)
+NameError: name 'mongo' is not defined
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:52:30] "[35m[1mGET /log_flask HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:53:28] "GET /log_flask HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:53:35] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:54:05] "GET /log HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:54:07] "GET /log_bot HTTP/1.1" 200 -

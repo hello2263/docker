@@ -3,13 +3,14 @@ from flask_restful import Resource, Api, reqparse
 from datetime import datetime
 from pymongo import MongoClient
 from pymongo.cursor import CursorType
-import requests, json, time, sys, os, func
+import requests, json, time, sys, os, func, logging
 global friend
 
 app = Flask(__name__)
 host = "172.17.0.4"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
+logging.basicConfig(filename = 'log_chatbot.log', level = logging.DEBUG)
 mydb = mongo['alarm']
 myweather = mydb['weather']
 mysetting = mydb['setting']
@@ -22,7 +23,7 @@ def alarm_setting_update():
 @app.route('/start_alarm', methods=['POST'])
 def start_alarm():
     if request.method == 'POST':
-        print('경험유무 판별중')
+        logging.info('경험유무 판별중')
         content = request.get_json()
         dataSend = {
             "version": "2.0",
@@ -47,6 +48,7 @@ def start_alarm():
                         ]
             }
         }
+        func.read_log('log_chatbot')
         return jsonify(dataSend)
 
 @app.route('/name', methods=['POST'])
@@ -64,7 +66,7 @@ def get_name():
             value = i
         for j in user_check:
             check = j
-        print(content + '님이 앱 실행 중')
+        logging.info(content + '님이 앱 실행 중')
         if value.get('name') == None:
             user_name = friend['name']
             if check.get('name') == None:
@@ -86,7 +88,8 @@ def get_name():
                                 ]
                     }
                 }
-                print(friend['name'] + '님은 토큰을 발급하지 않았음')
+                logging.info(friend['name'] + '님은 토큰을 발급하지 않았음')
+                func.read_log('log_chatbot')
                 return jsonify(dataSend)
             else:
                 dataSend = {
@@ -117,7 +120,8 @@ def get_name():
                                     ]
                                 }
                             }
-                print(friend['name'] + '님은 설정한 알람이 없음')
+                logging.info(friend['name'] + '님은 설정한 알람이 없음')
+                func.read_log('log_chatbot')
                 return jsonify(dataSend)
             
         else:
@@ -150,7 +154,8 @@ def get_name():
                             ]
                 }
             }
-            print(friend['name'] + '님은 설정한 알람이 있음')
+            logging.info(friend['name'] + '님은 설정한 알람이 있음')
+            func.read_log('log_chatbot')
             return jsonify(dataSend)
             
 @app.route('/delete', methods=['POST'])
@@ -173,7 +178,8 @@ def delete_alarm():
                     ]
                 }
             }
-            print(user_name + '님의 알람 삭제 완료')
+            logging.info(user_name + '님의 알람 삭제 완료')
+            func.read_log('log_chatbot')
             return jsonify(dataSend)
 
         else:
@@ -189,7 +195,8 @@ def delete_alarm():
                     ]
                 }
             }
-            print(user_name + '님의 알람은 삭제할 것이 없음')
+            logging.info(user_name + '님의 알람은 삭제할 것이 없음')
+            func.read_log('log_chatbot')
             return jsonify(dataSend)
         
 @app.route('/complain', methods=['POST'])
@@ -211,7 +218,8 @@ def send_complain():
                         ]
             }
         }
-        print(user_name + '님의 건의사항 업로드')
+        logging.info(user_name + '님의 건의사항 업로드')
+        func.read_log('log_chatbot')
         return jsonify(dataSend)
 
 @app.route('/set_time', methods=['POST'])
@@ -235,6 +243,7 @@ def set_time():
                         ]
             }
         }
-        print(friend)
+        logging.info(friend)
         alarm_setting_update()
+        func.read_log('log_chatbot')
         return jsonify(dataSend)

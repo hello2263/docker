@@ -1,0 +1,347 @@
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 17:55:59] "POST /start_alarm HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.40 - - [15/Jan/2022 17:56:07] "POST /name HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 17:56:17] "POST /name HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 17:56:58] "POST /start_alarm HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 17:57:04] "POST /name HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:03:24] "POST /start_alarm HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:04:24] "POST /name HTTP/1.1" 200 -
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:04:29] "POST /start_alarm HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:04:49] "POST /name HTTP/1.1" 200 -
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:04:53] "POST /start_alarm HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.40 - - [15/Jan/2022 18:05:12] "POST /name HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:05:19] "POST /start_alarm HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.40 - - [15/Jan/2022 18:05:34] "POST /name HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:05:58] "POST /name HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+ERROR:app2:Exception on /name [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 61, in get_name
+    content = cotent1
+NameError: name 'cotent1' is not defined
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:06:29] "[35m[1mPOST /name HTTP/1.1[0m" 500 -
+ERROR:app2:Exception on /name [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 61, in get_name
+    content = cotent1
+NameError: name 'cotent1' is not defined
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:06:38] "[35m[1mPOST /name HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+ERROR:app2:Exception on /name [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 61, in get_name
+    content = cotent1
+NameError: name 'cotent1' is not defined
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:06:54] "[35m[1mPOST /name HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+ERROR:app2:Exception on /name [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 61, in get_name
+    content1 = cotent
+NameError: name 'cotent' is not defined
+INFO:werkzeug:219.249.231.40 - - [15/Jan/2022 18:07:23] "[35m[1mPOST /name HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+ERROR:app2:Exception on /name [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 61, in get_name
+    content1 = cotent
+NameError: name 'cotent' is not defined
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:10:55] "[35m[1mPOST /name HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:werkzeug:219.249.231.40 - - [15/Jan/2022 18:13:01] "POST /name HTTP/1.1" 200 -
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:13:08] "POST /start_alarm HTTP/1.1" 200 -
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:13:10] "POST /start_alarm HTTP/1.1" 200 -
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:13:12] "POST /start_alarm HTTP/1.1" 200 -
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:13:17] "POST /start_alarm HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:13:25] "POST /name HTTP/1.1" 200 -
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:14:06] "POST /start_alarm HTTP/1.1" 200 -
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:14:17] "POST /name HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 151, in read_log
+    log = open('/home/ec2-user/chatbot/'+name+'.log', 'rt')
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ec2-user/chatbot/chatbot.log'
+INFO:werkzeug:219.249.231.40 - - [15/Jan/2022 18:42:47] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 151, in read_log
+    log = open('/home/ec2-user/chatbot/'+name+'.log', 'rt')
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ec2-user/chatbot/chatbot.log'
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:42:53] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 151, in read_log
+    log = open('/home/ec2-user/chatbot/'+name+'.log', 'rt')
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ec2-user/chatbot/chatbot.log'
+INFO:werkzeug:219.249.231.40 - - [15/Jan/2022 18:43:19] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 52, in start_alarm
+    func.read_log('chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 151, in read_log
+    log = open('/home/ec2-user/chatbot/'+name+'.log', 'rt')
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ec2-user/chatbot/chatbot.log'
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:45:56] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('log_chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 151, in read_log
+    log = open('/home/ec2-user/chatbot/'+name+'.log', 'rt')
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ec2-user/chatbot/log_chatbot.log'
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:46:52] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('log_chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 151, in read_log
+    log = open('/home/ec2-user/chatbot/'+name+'.log', 'rt')
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ec2-user/chatbot/log_chatbot.log'
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:46:54] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('log_chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 158, in read_log
+    func.delete_item_many(mongo, {}, "alarm", name)
+NameError: name 'func' is not defined
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:47:42] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('log_chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 158, in read_log
+    delete_item_many(mongo, {}, "alarm", name)
+NameError: name 'delete_item_many' is not defined
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:49:23] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('log_chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 158, in read_log
+    delete_item_many(mongo, {}, "alarm", name)
+NameError: name 'delete_item_many' is not defined
+INFO:werkzeug:219.249.231.40 - - [15/Jan/2022 18:49:26] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('log_chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 161, in read_log
+    delete_item_many(mongo, {}, "alarm", name)
+NameError: name 'mongo' is not defined
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:50:09] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+INFO:root:경험유무 판별중
+ERROR:app2:Exception on /start_alarm [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/docker/chatbot/app2.py", line 51, in start_alarm
+    func.read_log('log_chatbot')
+  File "/home/ec2-user/docker/chatbot/func.py", line 161, in read_log
+    delete_item_many(mongo, {}, "alarm", name)
+NameError: name 'mongo' is not defined
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:50:11] "[35m[1mPOST /start_alarm HTTP/1.1[0m" 500 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.42 - - [15/Jan/2022 18:51:53] "POST /start_alarm HTTP/1.1" 200 -
+INFO:root:문제훈님이 앱 실행 중
+INFO:root:문제훈님은 설정한 알람이 있음
+INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:51:57] "POST /name HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
