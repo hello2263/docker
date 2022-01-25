@@ -3,11 +3,11 @@ LABEL email="hello2273@naver.com"
 LABEL name="Dogyu Hwang"
 LABEL description="My Weather App Flask"
 
+
 ADD . /www
 WORKDIR /www
 
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
-# CMD uwsgi uwsgi.ini
 CMD ["python", "./run1.py"]

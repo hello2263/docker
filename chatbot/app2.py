@@ -7,7 +7,7 @@ import requests, json, time, sys, os, func, logging
 global friend
 
 app = Flask(__name__)
-host = "172.17.0.4"
+host = "172.17.0.2"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
 logging.basicConfig(filename = 'log_chatbot.log', level = logging.DEBUG)
@@ -119,8 +119,6 @@ def get_name():
                                 }
                                     ]
                                 }
-                            }
-                logging.info(friend['name'] + '님은 설정한 알람이 없음')
                 func.read_log('log_chatbot')
                 return jsonify(dataSend)
             

@@ -7,7 +7,7 @@ from urllib.request import urlopen
 import requests, json, time, sys, os, func, logging
 
 app = Flask(__name__)
-host = "172.17.0.4"
+host = "172.17.0.2"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
 logging.basicConfig(filename = 'log_flask.log', level = logging.DEBUG)
@@ -32,7 +32,6 @@ def weather_gui():
     weather = set_data_for_weather(select_date)
     return render_template('weather.html', data = weather, date = select_date, time = ctime, count = count)
 
-
 @app.route('/kakao_friend_code', methods=['GET', 'POST'])
 def kakao_friend_code():
     if request.method == 'POST': 
@@ -42,9 +41,7 @@ def kakao_friend_code():
         friend_code = args_dict['code']
         func.kakao_to_friends_get_friendstokens(friend_code)
         # func.kakao_owner_token()
-        # kakao_to_friends_get_refreshtokens()
         func.kakao_friends_token()
-        # kakao_to_friends_get_friendrefreshtokens()
         print('a')
         func.kakao_friend_get_data()
         print('b')

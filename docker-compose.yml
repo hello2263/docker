@@ -2,33 +2,28 @@ version: '3'
 
 services:
   server:
-      container_name: server
+      container_name: myserver
       image: "server:test"
       ports:
       - "5000:5000"
       networks:
       - backend
   chatbot:
-      container_name: chatbot
+      container_name: mychatbot
       image: "chatbot:test"
       ports:
       - "5555:5555"
       networks:
       - backend
   nginx:
-      container_name: nginx
+      container_name: mynginx
       image: "nginx:test"
       ports:
       - "80:80"
       networks:
       - backend
-  mongodb:
-      container_name: mongodb
-      image: "mongodb:test"
-      ports:
-      -  "27017:27017"
-      networks:
-      -  backend
+      volumes:
+      - /etc/nginx/:/etc/nginx/
 
 networks:
   backend:

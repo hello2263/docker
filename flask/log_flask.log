@@ -70,3 +70,45 @@ INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:53:28] "GET /log_flask HTTP/1.1"
 INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:53:35] "GET / HTTP/1.1" 200 -
 INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:54:05] "GET /log HTTP/1.1" 200 -
 INFO:werkzeug:49.142.68.172 - - [15/Jan/2022 18:54:07] "GET /log_bot HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 14:55:59] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 14:56:01] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 14:56:02] "GET /log HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 14:56:03] "GET /log_flask HTTP/1.1" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 14:56:06] "[33mGET /fuN3 HTTP/1.0[0m" 404 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 14:56:17] "GET /log_flask HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 14:56:23] "GET /log_chatbot HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:04:34] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:04:36] "GET /weather HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:04:36] "GET /static/map.jpg HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:04:36] "GET /static/gray2.png HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:04:36] "GET /static/gray.png HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:04:38] "GET /log HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:08:14] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:209.17.97.98 - - [25/Jan/2022 15:09:41] "GET / HTTP/1.0" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:13:28] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:49.142.68.172 - - [25/Jan/2022 15:13:29] "GET /log HTTP/1.1" 200 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 15:49:45] "GET / HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 15:49:46] "[33mGET /:5000/log HTTP/1.0[0m" 404 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 15:50:44] "[33mGET /:5000/log HTTP/1.0[0m" 404 -
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:41] "GET / HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:43] "GET /weather HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:43] "GET /static/map.jpg HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:43] "GET /static/gray2.png HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:43] "GET /static/gray.png HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:47] "GET /log HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:48] "GET /log_flask HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:53] "GET / HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:55] "GET /log HTTP/1.0" 200 -
+INFO:werkzeug:3.35.252.82 - - [25/Jan/2022 16:04:56] "GET /log_flask HTTP/1.0" 200 -

@@ -345,3 +345,8 @@ INFO:werkzeug:219.249.231.41 - - [15/Jan/2022 18:51:57] "POST /name HTTP/1.1" 20
 WARNING:werkzeug: * Running on all addresses.
    WARNING: This is a development server. Do not use it in a production deployment.
 INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.31.38.223:5555/ (Press CTRL+C to quit)
+INFO:root:경험유무 판별중
+INFO:werkzeug:219.249.231.40 - - [25/Jan/2022 17:07:03] "POST /start_alarm HTTP/1.1" 200 -

@@ -6,7 +6,7 @@ from pymongo import MongoClient
 from pymongo.cursor import CursorType
 import sys, json, requests, os
 
-host = "172.17.0.4"
+host = "172.17.0.2"
 port = "27017"
 mongo = MongoClient(host, int(port), connect=False)
 
@@ -167,4 +167,5 @@ def read_log(name):
     delete_item_many(mongo, {}, "alarm", name)
     for i in line_log:
         insert_item_one(mongo, {'log':str(i)}, 'alarm', name)
+        print(i)
     
